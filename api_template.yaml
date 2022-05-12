@@ -1,0 +1,15 @@
+id:
+  providerName: wso2apideveloper
+  version: 1.0.0
+  apiName: SampleStore
+context:
+description: This is a sample server online store
+type: HTTP
+availableTiers:
+  - name: Unlimited
+  - name: Bronze
+status: $STATE
+visibility: public
+transports: http,https
+productionUrl: http://localhost:8080
+sandboxUrl: http://localhost:8081

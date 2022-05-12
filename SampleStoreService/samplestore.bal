@@ -14,6 +14,12 @@ public type NewProduct record {
     string price;  
 };
 
+# Description
+#
+# + list - Field Description  
+# + total - Field Description  
+# + offset - Field Description  
+# + 'limit - Field Description
 public type ProductList record { 
     Product[] list;
     int total;
@@ -33,13 +39,10 @@ price:"$49.61"};
 
 map<Product> productList = { "1" : product1 , "2": product2, "3": product3, "4": product4, "5": product5};
 
-service samplestore on new http:Listener(9090) {
+service http:Service /samplestore on new http:Listener(9090) {
     
-    @http:ResourceConfig {
-        methods:["GET"],
-        path:"/products"
-    }
-    resource function getProducts(http:Caller caller, http:Request req) returns error? {
+
+    resource function get products(http:Caller caller, http:Request req) returns error? {
         http:Response res = new;
         json[] productsJson = [];
         int counter = 0;
@@ -55,35 +58,28 @@ service samplestore on new http:Listener(9090) {
         var success = caller->respond(res);
 
         if (success is error) {
-            log:printError("Error sending response", err = success);
+           // log:printError("Error sending response", err = success);
         }
 
     }
 
-    @http:ResourceConfig {
-        methods:["POST"],
-        path:"/products", 
-        body:"product"
-    }
-    resource function postProducts(http:Caller caller, http:Request req, NewProduct product ) returns error? {
+
+    resource function post products(@http:Payload NewProduct product1 ) returns error? {
         http:Response res = new;
         int newId = productList.length()+1;
-        Product newProduct = {id:newId, name:product.name, description:product.description, 
-        price: product.price};
+        Product newProduct = {id:newId, name:product1.name, description:product1.description, 
+        price: product1.price};
         productList[newId.toString()] = newProduct;
         res.setJsonPayload({id:newProduct.id, name: newProduct.name, description: newProduct.description,
         price: newProduct.price});
-        var success = caller->created("Created", res);
-        if (success is error) {
-            log:printError("Error sending response", err = success);
-        }
+        // var success = caller->created("Created", res);
+        // if (success is error) {
+        //     log:printError("Error sending response", err = success);
+        // }
     }
 
-    @http:ResourceConfig {
-        methods:["GET"],
-        path:"/products/{productId}"
-    }
-    resource function getProductsById(http:Caller caller, http:Request req, int productId) returns error? {
+
+    resource function get products/[string orderId](http:Caller caller, http:Request req, int productId) returns error? {
         http:Response res = new;
         string productIdValue = productId.toString();
 
@@ -98,20 +94,23 @@ service samplestore on new http:Listener(9090) {
                 json jerr = {code:500, message: "Internal Server Error", description: "Error while getting product"
                 + "details for product Id:" + productIdValue};
                 res.statusCode = 500;
-                res.setContentType("application/json");
+                
                 res.setJsonPayload(jerr);
             }
         } else {
             json jerr = {code:404, message: "Not Found", description: "Invalid product Id"};
             res.statusCode = 404;
-            res.setContentType("application/json");
+            error? contentType = res.setContentType("application/json");
+            if contentType is error {
+
+            }
             res.setJsonPayload(jerr);
         }
 
         var result = caller->respond(res);
 
         if (result is error) {
-            log:printError("Error sending response", err = result);
+           // log:printError("Error sending response", err = result);
         }
 
     }    

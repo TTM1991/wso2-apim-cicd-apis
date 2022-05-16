@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools {nodejs "Node"}
+    tools {nodejs "NodeJSTTM"}
     environment {
         CI = 'true'
         API_DIR = './SampleStore'
@@ -12,8 +12,8 @@ pipeline {
         stage('Preparation') {
             steps{
                 git branch: "master",
-                url: 'https://github.com/dushaniw/sample-store.git',
-                credentialsId: 'dushaniw-git'
+                url: 'https://github.com/TTM1991/wso2-apim-cicd-apis.git',
+                credentialsId: 'TTM1991-git'
             }
         }
         stage('Deploy to Dev') {

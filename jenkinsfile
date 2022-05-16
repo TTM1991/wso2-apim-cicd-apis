@@ -12,7 +12,7 @@ pipeline {
         stage('Preparation') {
             steps{
                 git branch: "master",
-                url: 'https://github.com/TTM1991/wso2-apim-cicd-apis.git',
+                url: 'https://github.com/TTM1991/sample-store.git',
                 credentialsId: 'TTM1991-git'
             }
         }

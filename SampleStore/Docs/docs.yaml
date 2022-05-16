@@ -1,0 +1,9 @@
+ -
+  id: 916ad053-4708-4a4e-8121-3d01c81c2daf
+  type: HOWTO
+  name: SampleStoreDoc
+  summary: summary
+  sourceType: FILE
+  visibility: API_LEVEL
+  lastUpdated: Dec 12, 2019 11:18:16 PM
+  filePath: SampleStoreAPIDoc.pdf

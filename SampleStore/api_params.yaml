@@ -1,0 +1,21 @@
+environments:
+  - name: dev
+    endpoints:
+      production:
+        url: http://localhost:8082/samplestore
+        config:
+          retryTimeOut: $RETRY
+      sandbox:
+        url: http://localhost:8083/samplestore
+        config:
+          retryTimeOut: $RETRY        
+  - name: prod
+    endpoints:
+      production:
+        url: http://localhost:8081/samplestore
+        config:
+          retryTimeOut: $RETRY      
+      sandbox:
+        url: http://localhost:8084/samplestore
+        config:
+          retryTimeOut: $RETRY      

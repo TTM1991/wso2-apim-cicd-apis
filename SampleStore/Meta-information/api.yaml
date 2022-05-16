@@ -1,0 +1,81 @@
+id:
+  providerName: wso2apideveloper
+  apiName: SampleStore
+  version: 1.0.0
+uuid: c318b6ad-2993-4c67-801d-b2c27c151ab2
+description: This is a sample server online store
+type: HTTP
+context: /SampleStore/1.0.0
+contextTemplate: /SampleStore/{version}
+tags: []
+documents: []
+lastUpdated: Dec 12, 2019 11:12:13 PM
+availableTiers:
+ -
+  name: Bronze
+  displayName: Bronze
+  description: Allows 1000 requests per minute test
+  requestCount: 1000
+  unitTime: 1
+  timeUnit: min
+  tierPlan: FREE
+  stopOnQuotaReached: true
+ -
+  name: Unlimited
+  displayName: Unlimited
+  description: Allows unlimited requests
+  requestsPerMin: 2147483647
+  requestCount: 2147483647
+  unitTime: 0
+  timeUnit: ms
+  tierPlan: FREE
+  stopOnQuotaReached: true
+availableSubscriptionLevelPolicies: []
+uriTemplates: []
+apiHeaderChanged: false
+apiResourcePatternsChanged: false
+status: PUBLISHED
+visibility: public
+gatewayLabels: []
+endpointSecured: false
+endpointAuthDigest: false
+transports: http,https
+advertiseOnly: false
+corsConfiguration:
+  corsConfigurationEnabled: false
+  accessControlAllowOrigins:
+   - '*'
+  accessControlAllowCredentials: false
+  accessControlAllowHeaders:
+   - authorization
+   - Access-Control-Allow-Origin
+   - Content-Type
+   - SOAPAction
+  accessControlAllowMethods:
+   - GET
+   - PUT
+   - POST
+   - DELETE
+   - PATCH
+   - OPTIONS
+endpointConfig: '{"endpoint_type":"http","production_endpoints":{"config":{"factor":null,"retryDelay":null,"retryTimeOut":"80"},"url":"http://dev.wso2.com:9090/samplestore"},"sandbox_endpoints":{"config":{"factor":null,"retryDelay":null,"retryTimeOut":"80"},"url":"http://dev.sandbox.wso2.com:9090/samplestore"}}'
+cacheTimeout: 0
+implementation: ENDPOINT
+scopes: []
+isDefaultVersion: false
+isPublishedDefaultVersion: false
+environments:
+ - Production and Sandbox
+createdTime: "1576172532126"
+additionalProperties: {}
+monetizationProperties: {}
+isMonetizationEnabled: false
+environmentList:
+ - SANDBOX
+ - PRODUCTION
+apiSecurity: oauth2,oauth_basic_auth_api_key_mandatory
+endpoints: []
+enableSchemaValidation: false
+accessControl: all
+rating: 0.0
+isLatest: true
